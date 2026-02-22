@@ -40,50 +40,51 @@
                 <img id="glow-slide" src="" alt="Slide Glow">
             </div>
 
-            <!-- СЛОЙ 4: МИНИМАЛИСТИЧНЫЙ ИНТЕРФЕЙС ПОВЕРХ ВСЕГО -->
-            <div class="floating-ui">
+        </div>
 
-                <!-- Левая плашка: Название -->
-                <div class="info-panel glass-minimal">
-                    <div class="info-header">
-                        <span class="pulse-dot"></span>
-                        <h2 id="desc-title" class="mono-title">SCENE_01</h2>
-                    </div>
-                    <p id="desc-text">Загрузка информации...</p>
+        <!-- СЛОЙ 4: МИНИМАЛИСТИЧНЫЙ ИНТЕРФЕЙС ПОВЕРХ ВСЕГО -->
+        <div class="floating-ui">
+
+            <!-- Левая плашка: Название -->
+            <div class="info-panel glass-minimal">
+                <div class="info-header">
+                    <span class="pulse-dot"></span>
+                    <h2 id="desc-title" class="mono-title">SCENE_01</h2>
+                </div>
+                <p id="desc-text">Загрузка информации...</p>
+            </div>
+
+            <!-- Правая плашка: Пульт -->
+            <div class="remote-panel glass-minimal">
+                <!-- Индикатор номера слайда -->
+                <div class="slide-counter">
+                    <span id="slide-current" class="mono-number">01</span>
+                    <span class="mono-divider">/</span>
+                    <span id="slide-total" class="mono-number">20</span>
                 </div>
 
-                <!-- Правая плашка: Пульт -->
-                <div class="remote-panel glass-minimal">
-                    <!-- Индикатор номера слайда -->
-                    <div class="slide-counter">
-                        <span id="slide-current" class="mono-number">01</span>
-                        <span class="mono-divider">/</span>
-                        <span id="slide-total" class="mono-number">20</span>
-                    </div>
+                <!-- Разделитель -->
+                <div class="v-divider"></div>
 
-                    <!-- Разделитель -->
-                    <div class="v-divider"></div>
-
-                    <!-- Кнопки пульта -->
-                    <div class="remote-controls">
-                        <button id="btn-prev" class="minimal-btn">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M15 18l-6-6 6-6" />
-                            </svg>
-                        </button>
-                        <button id="btn-next" class="minimal-btn">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M9 18l6-6-6-6" />
-                            </svg>
-                        </button>
-                    </div>
+                <!-- Кнопки пульта -->
+                <div class="remote-controls">
+                    <button id="btn-prev" class="minimal-btn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M15 18l-6-6 6-6" />
+                        </svg>
+                    </button>
+                    <button id="btn-next" class="minimal-btn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M9 18l6-6-6-6" />
+                        </svg>
+                    </button>
                 </div>
-
             </div>
 
         </div>
+
     </div>
 
     <!-- GSAP для анимаций -->

@@ -36,6 +36,7 @@ html {
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
 }
 
 /* 
@@ -338,17 +339,76 @@ Mobile Adaptability
 =========================
 */
 @media (max-width: 900px) {
+    .scene-aspect {
+        transform: scale(1.15);
+        /* Приближаем TV на 15% */
+        transform-origin: center center;
+    }
+
+    .floating-ui {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 50px 20px 40px 20px;
+    }
+
     .info-panel {
-        bottom: 150px;
-        left: 20px;
-        right: 20px;
-        max-width: none;
+        position: relative;
+        bottom: auto;
+        left: auto;
+        right: auto;
+        top: auto;
+        max-width: 100%;
+        text-align: center;
+        background: transparent;
+        border: none;
+        box-shadow: none;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        padding: 0;
+    }
+
+    .info-header {
+        justify-content: center;
+        margin-bottom: 20px;
+    }
+
+    .mono-title {
+        color: var(--accent);
+        font-size: 1.15rem;
+    }
+
+    .info-panel p {
+        color: rgba(255, 255, 255, 0.85);
+        /* Light text on dark #000 background */
+        font-size: 1.05rem;
     }
 
     .remote-panel {
-        bottom: 40px;
-        left: 20px;
-        right: 20px;
+        position: relative;
+        bottom: auto;
+        left: auto;
+        right: auto;
+        top: auto;
         justify-content: space-between;
+        width: 100%;
+        margin-top: auto;
+        padding: 15px 25px;
+        background: rgba(255, 255, 255, 0.08);
+        /* Очень легкое полупрозрачное стекло */
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 40px;
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    .mono-number {
+        color: #fff;
+    }
+
+    .mono-divider,
+    #slide-total {
+        color: rgba(255, 255, 255, 0.5);
     }
 }
