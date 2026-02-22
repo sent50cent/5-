@@ -1,157 +1,216 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // 1. Image List
+
+    // 1. Сбор Информации
     const imageFiles = [
-        "A_cinematic_medium_2k_202602211049_1.jpg",
-        "A_dynamic_mediumwide_2k_202602211131_2.jpg",
-        "A_medium_shot_2k_202602211035_1.jpg",
-        "Prompt_1__2k_202602202202_1.jpg",
-        "Prompt_a_cinematic_202602211313_1.jpg",
-        "Prompt_a_cinematic_2k_202602201105-2_2.jpg",
-        "Prompt_a_closeup_2k_202602201105_1.jpg",
-        "Prompt_a_vibrant_2k_202602211313_2.jpg",
-        "Take_a_still_2k_202602221130_1_1.jpg",
-        "freepik__-__23038_1.jpg",
-        "freepik__-__23042_1.jpg",
-        "freepik__-__64990_1_1.jpg",
-        "freepik__-__91247_1.jpg",
-        "freepik__-img4-__71505_1.jpg",
-        "hf_20260221_125005_a101d66e-dbca-4112-8af0-4573f7e9dc4c_3_1.jpg",
-        "hf_20260221_125845_e5d02e05-0081-4f3e-8f54-1d85b9c3a713_1_1.jpg",
-        "hf_20260221_165540_31739cdf-0044-46fb-a7c4-d3d55bc0d1bf_2.jpg"
+        "1.png",
+        "10.png",
+        "11.png",
+        "12.png",
+        "13.png",
+        "14.png",
+        "15.png",
+        "16.png",
+        "17.png",
+        "18.png",
+        "19.png",
+        "2.png",
+        "20.png",
+        "3.png",
+        "4.png",
+        "5.png",
+        "6.png",
+        "7.png",
+        "8.png",
+        "9.png"
     ];
+    for (let i = 1; i <= 20; i++) {
+        imageFiles.push(`${i}.jpg`);
+    }
 
-    const app = document.getElementById('app');
-    const pagination = document.querySelector('.pagination');
+    const maxSlides = imageFiles.length;
+    let currentIndex = 0;
+    let isAnimating = false; // Блокировка частых кликов
 
-    // Funny placeholder titles and texts for Barbie context
     const catchphrases = [
-        "Welcome to the Dream Reality!",
-        "Every Day is a Fashion Show.",
-        "Step Into the Pink Dimension.",
-        "Where Dreams Meet Design.",
-        "Luxury at Every Corner.",
-        "A Doll's Cinematic Universe.",
-        "Pink is the New Black.",
-        "Your Plastic Perfection Awaits.",
-        "Living in a Pastel Paradise.",
-        "The Ultimate Dreamhouse.",
-        "Beyond the Doll Box.",
-        "Shine as Bright as Neon.",
-        "Retro Meets the Future.",
-        "A World Unbound by Rules.",
-        "Aesthetically Yours.",
-        "Where Style Reigns Supreme.",
-        "The Finale of Fabulous."
+        { title: "SCENE_01", desc: "Главный тизер. Музыкальное шоу, загрузка видеоряда." },
+        { title: "SCENE_02", desc: "Анна на главной сцене. Блики и текстура одежды." },
+        { title: "SCENE_03", desc: "Гардеробная Мечты. Симметрия и масштаб пространства." },
+        { title: "SCENE_04", desc: "Розовый Кабриолет. Динамика и глубина кадра." },
+        { title: "SCENE_05", desc: "Примерочная. Идеальная игра света и тени." },
+        { title: "SCENE_06", desc: "Эпичный Особняк. Широкий архитектурный план." },
+        { title: "SCENE_07", desc: "Студийная Съемка. Идеальные пропорции 'Sims'." },
+        { title: "SCENE_08", desc: "Музыкальная Студия. Детализация инструментов." },
+        { title: "SCENE_09", desc: "Идеальный Ужин. Композиция и фуд-стилистика." },
+        { title: "SCENE_10", desc: "Мужской Клуб. Дымчатая и приватная эстетика." },
+        { title: "SCENE_11", desc: "Азартная Игра. Фокус на фишках и долларах." },
+        { title: "SCENE_12", desc: "Клубная Ночь. Неоновый свет и визуальный ритм." },
+        { title: "SCENE_13", desc: "Воздушная Прогулка. Огромные элементы природы." },
+        { title: "SCENE_14", desc: "Сердце-Зеркало. Искусственная 3D перспектива." },
+        { title: "SCENE_15", desc: "Покупка. Крупная фактура матового пластика." },
+        { title: "SCENE_16", desc: "Летний Бриз. Освещение, движение и легкость." },
+        { title: "SCENE_17", desc: "Пуховик в Раю. Яркий залитый солнцем кадр." },
+        { title: "SCENE_18", desc: "Релакс у Бассейна. Розовые шезлонги и вода." },
+        { title: "SCENE_19", desc: "Гламурная Вечеринка. Контраст и вспышки камер." },
+        { title: "SCENE_20", desc: "Гранд-Финал. Общий план всех элементов." }
     ];
 
-    // 2. Generate Slides
-    imageFiles.forEach((filename, index) => {
-        // Create Slides
-        const slide = document.createElement('section');
-        slide.className = 'slide';
-        // HTML structure for parallax and glass effect
-        slide.innerHTML = `
-            <div class="slide-bg-container">
-                <div class="slide-overlay"></div>
-                <div class="slide-bg" style="background-image: url('images_optimized/${encodeURIComponent(filename)}')"></div>
-            </div>
-            <div class="glass-card">
-                <h2>Scene ${index + 1}</h2>
-                <p>${catchphrases[index]}</p>
-                <p>Welcome to an immersive visual experience. Let this high-end aesthetic take you on a journey through vibrant colors and dreamlike architecture.</p>
-                <button class="glow-btn">Discover More</button>
-            </div>
-        `;
-        app.appendChild(slide);
+    // 2. DOM Elements
+    // Основные элементы
+    const screenImg = document.getElementById('current-slide');
+    const videoElem = document.getElementById('current-video');
 
-        // Create Navigation Dots
-        const dot = document.createElement('div');
-        dot.className = 'dot';
-        dot.dataset.index = index;
-        dot.addEventListener('click', () => {
-            lenis.scrollTo(slide, { duration: 1.5, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
-        });
-        pagination.appendChild(dot);
+    // Элементы динамичного СВЕЧЕНИЯ
+    const glowImg = document.getElementById('glow-slide');
+    const glowVideo = document.getElementById('glow-video');
+
+    const descTitle = document.getElementById('desc-title');
+    const descText = document.getElementById('desc-text');
+    const slideCurrent = document.getElementById('slide-current');
+    const slideTotal = document.getElementById('slide-total');
+    const btnPrev = document.getElementById('btn-prev');
+    const btnNext = document.getElementById('btn-next');
+
+    slideTotal.innerHTML = String(maxSlides).padStart(2, '0');
+
+    // 3. Events - AUTO PLAY LOGIC
+    // Сценарий: Как только видео завершилось, ВРУБИТЬ СЛАЙД 2 АВТОМАТИЧЕСКИ
+    videoElem.addEventListener('ended', () => {
+        if (!isAnimating && currentIndex === 0) {
+            changeSlide(1);
+        }
     });
 
-    const dots = document.querySelectorAll('.dot');
+    // Initial Load
+    updateContent(0, 0);
 
-    // 3. Initialize Smooth Scrolling (Lenis)
-    const lenis = new Lenis({
-        duration: 1.2,
-        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // https://www.desmos.com/calculator/brs54l4xou
-        direction: 'vertical',
-        gestureDirection: 'vertical',
-        smooth: true,
-        mouseMultiplier: 1,
-        smoothTouch: false,
-        touchMultiplier: 2,
-        infinite: false,
+    // 4. Events - BUTTON LOGIC
+    btnNext.addEventListener('click', () => {
+        if (isAnimating) return;
+        if (currentIndex < maxSlides - 1) {
+            changeSlide(1);
+        } else {
+            // Эффект пружинки при сбое переключения в конец
+            const activeElem = currentIndex === 0 ? videoElem : screenImg;
+            gsap.fromTo(activeElem, { scale: 0.98 }, { scale: 1, duration: 0.2, ease: "bounce.out" });
+        }
     });
 
-    // Integrated Lenis with GSAP ScrollTrigger
-    lenis.on('scroll', ScrollTrigger.update);
-    gsap.ticker.add((time) => {
-        lenis.raf(time * 1000);
-    });
-    gsap.ticker.lagSmoothing(0);
-
-    // 4. GSAP Animations
-    const slides = document.querySelectorAll('.slide');
-    const progressBar = document.querySelector('.progress-fill');
-
-    // Make the progress bar update on scroll
-    window.addEventListener('scroll', () => {
-        const scrollTop = document.documentElement.scrollTop;
-        const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        const progress = (scrollTop / scrollHeight) * 100;
-        progressBar.style.width = progress + '%';
+    btnPrev.addEventListener('click', () => {
+        if (isAnimating) return;
+        if (currentIndex > 0) {
+            changeSlide(-1);
+        } else {
+            const activeElem = currentIndex === 0 ? videoElem : screenImg;
+            gsap.fromTo(activeElem, { scale: 0.98 }, { scale: 1, duration: 0.2, ease: "bounce.out" });
+        }
     });
 
-    // Animate each slide
-    slides.forEach((slide, i) => {
-        const bg = slide.querySelector('.slide-bg-container');
-        const content = slide.querySelector('.glass-card');
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight' || e.key === 'd') btnNext.click();
+        if (e.key === 'ArrowLeft' || e.key === 'a') btnPrev.click();
+    });
 
-        // Set initial active dot
-        if (i === 0) dots[0].classList.add('active');
+    // 5. Logic Functions: TV GLITCH ANIMATION
+    function changeSlide(direction) {
+        if (isAnimating) return;
+        isAnimating = true;
 
-        // Update dots on scroll
-        ScrollTrigger.create({
-            trigger: slide,
-            start: "top center",
-            end: "bottom center",
-            onToggle: self => {
-                if (self.isActive) {
-                    dots.forEach(d => d.classList.remove('active'));
-                    dots[i].classList.add('active');
-                }
+        const nextIndex = currentIndex + direction;
+
+        // Текущие видимые экраны
+        const activeElemCurrent = currentIndex === 0 ? videoElem : screenImg;
+        const activeGlowCurrent = currentIndex === 0 ? glowVideo : glowImg;
+
+        // Вспышка ШУМА из 90-х как при переключении ЭЛТ телевизора
+        gsap.to('.tv-noise', { opacity: 0.6, duration: 0.2, yoyo: true, repeat: 1, ease: "sine.inOut" });
+
+        // Эффект ВЫКЛЮЧЕНИЯ канала (плавное схлопывание)
+        gsap.to([activeElemCurrent, activeGlowCurrent], {
+            scaleY: 0.02,
+            scaleX: 1.02,
+            opacity: 0,
+            filter: "brightness(2) grayscale(0.5)",
+            duration: 0.25,
+            ease: "power2.inOut",
+            onComplete: () => {
+
+                // Переключаем сам контент
+                currentIndex = nextIndex;
+                updateContent(currentIndex, direction);
+
+                // Будущие видимые экраны
+                const activeElemNext = currentIndex === 0 ? videoElem : screenImg;
+                const activeGlowNext = currentIndex === 0 ? glowVideo : glowImg;
+
+                // Включаем новый канал (Плавное разворачивание)
+                gsap.fromTo([activeElemNext, activeGlowNext],
+                    { scaleY: 0.02, scaleX: 1.02, filter: "brightness(2) grayscale(0.5)", opacity: 1 },
+                    {
+                        scaleY: 1, scaleX: 1, filter: "brightness(1) saturate(1.1) grayscale(0)", duration: 0.35, ease: "power3.out",
+                        onComplete: () => setTimeout(() => { isAnimating = false; }, 100)
+                    }
+                );
             }
         });
 
-        // Background Parallax
-        gsap.to(bg, {
-            yPercent: 20,
-            ease: "none",
-            scrollTrigger: {
-                trigger: slide,
-                start: "top bottom",
-                end: "bottom top",
-                scrub: true
-            }
-        });
+        // Плавная анимация интерфейса (текст и номер слайда как у Apple)
+        gsap.fromTo([descTitle, descText, slideCurrent],
+            { y: Math.sign(direction) * 15, opacity: 0 },
+            { y: 0, opacity: 1, duration: 0.4, stagger: 0.05, ease: "power2.out" }
+        );
+    }
 
-        // Content Fade-in and Float up
-        gsap.to(content, {
-            opacity: 1,
-            y: 0,
-            duration: 1.2,
-            ease: "power3.out",
-            scrollTrigger: {
-                trigger: slide,
-                start: "top 75%", // Triggers animation when the top of the slide hits 75% down the viewport
-                toggleActions: "play none none reverse" // re-animates if hovered back up
-            }
-        });
-    });
+    // 6. Обновление Source для Главного экрана и контейнера Glow
+    function updateContent(index, direction) {
+
+        // --- 01. ВИДЕО --- 
+        if (index === 0) {
+            screenImg.style.display = 'none';
+            glowImg.style.display = 'none';
+
+            videoElem.style.display = 'block';
+            glowVideo.style.display = 'block';
+
+            // Включаем оба видео синхронно с начала
+            videoElem.currentTime = 0;
+            glowVideo.currentTime = 0;
+            videoElem.play().catch(e => console.log("Autoplay blocked:", e));
+            glowVideo.play().catch(e => { });
+
+        }
+        // --- 02-20. ФОТОГРАФИИ ---
+        else {
+            videoElem.style.display = 'none';
+            glowVideo.style.display = 'none';
+            videoElem.pause();
+            glowVideo.pause();
+
+            screenImg.style.display = 'block';
+            glowImg.style.display = 'block';
+
+            // Меняем source у обеих картинок
+            const imgSrc = `images_optimized/${imageFiles[index]}`;
+            screenImg.src = imgSrc;
+            glowImg.src = imgSrc;
+        }
+
+        // --- TEXT DATA ---
+        const defaultData = { title: `SCENE_${String(index + 1).padStart(2, '0')}`, desc: "Данные загружаются..." };
+        const data = catchphrases[index] || defaultData;
+
+        descTitle.innerHTML = data.title;
+        descText.innerHTML = data.desc;
+        slideCurrent.innerHTML = String(index + 1).padStart(2, '0');
+
+        // --- UI BUTTON STATE ---
+        btnPrev.style.opacity = index === 0 ? "0.3" : "1";
+        btnPrev.style.cursor = index === 0 ? "default" : "pointer";
+
+        btnNext.style.opacity = index === maxSlides - 1 ? "0.3" : "1";
+        btnNext.style.cursor = index === maxSlides - 1 ? "default" : "pointer";
+    }
+
+    // Легкая анимация появления UI при самой первой загрузке страницы
+    gsap.fromTo('.info-panel', { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, delay: 0.5, ease: "power3.out" });
+    gsap.fromTo('.remote-panel', { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, delay: 0.6, ease: "power3.out" });
 });
