@@ -341,77 +341,101 @@ Mobile Adaptability
 @media (max-width: 900px) {
 
     body,
-    html {
-        background: #fdf5f8;
-        /* Очень нежный, минималистичный розовый фон */
+    html,
+    .app-container {
+        background: linear-gradient(180deg, #fff0f5 0%, #ffb7d5 100%);
+        /* Заполняем "черную область" сзади красивым Apple-подобным розовым градиентом */
     }
 
     .scene-aspect {
-        transform: scale(1.25);
-        /* Приближаем TV еще жестче (1.15 + 10%) */
+        /* Приближаем еще на 10% (было 1.25, теперь 1.35) */
+        transform: scale(1.35);
         transform-origin: center center;
         background: #ffffff;
         /* Убираем темную виньетку комнаты на мобилках */
-        border-radius: 16px;
-        box-shadow: 0 20px 40px rgba(255, 64, 129, 0.1);
+        border-radius: 8px;
+        box-shadow: 0 0 40px rgba(0, 0, 0, 0.15);
     }
 
     .floating-ui {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        padding: 5vh 20px 4vh 20px;
+        display: block;
+        padding: 0;
     }
 
-    /* Возвращаем красивую плашку для текста сверху */
+    /* 
+    Магия: Автоматическое растягивание на всю пустоту!
+    Формула: 50vh (половина экрана) минус половина видимой высоты ТВ.
+    Высота ТВ = 100vw * (1072/1920) * 1.35 = 75.37vw.
+    Половина от 75.37vw = 37.68vw.
+    */
     .info-panel {
-        position: relative;
-        bottom: auto;
-        left: auto;
-        right: auto;
-        top: auto;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        /* Вычисляем до края ТВ, накинув +1vw чтобы гарантированно закрыть "черные защелины" */
+        height: calc(50dvh - 36vw);
         max-width: 100%;
-        text-align: left;
-        background: rgba(255, 255, 255, 0.75);
-        border: 1px solid rgba(255, 255, 255, 0.8);
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+
+        background: rgba(255, 255, 255, 0.85);
+        border: none;
+        border-bottom: 2px solid rgba(255, 255, 255, 0.8);
+        box-shadow: 0 10px 30px rgba(255, 64, 129, 0.08);
         backdrop-filter: blur(25px);
         -webkit-backdrop-filter: blur(25px);
-        padding: 24px;
-        border-radius: 24px;
+
+        border-radius: 0 0 32px 32px;
+        /* Закругляем только низ */
+
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        /* Текст будет прижат ближе к центру/ТВ */
+        padding: 20px 24px 30px 24px;
+        text-align: center;
     }
 
     .info-header {
-        justify-content: flex-start;
+        justify-content: center;
         margin-bottom: 8px;
+    }
+
+    .info-panel p {
+        color: var(--text-primary);
+        font-size: 1.05rem;
+        margin-top: 4px;
+    }
+
+    .remote-panel {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: calc(50dvh - 36vw);
+
+        background: rgba(255, 255, 255, 0.85);
+        border: none;
+        border-top: 2px solid rgba(255, 255, 255, 0.8);
+        box-shadow: 0 -10px 30px rgba(255, 64, 129, 0.08);
+        backdrop-filter: blur(25px);
+        -webkit-backdrop-filter: blur(25px);
+
+        border-radius: 32px 32px 0 0;
+        /* Закругляем только верх */
+
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+        /* Кнопки будут прижаты ближе к центру/ТВ */
+        padding: 30px 24px 20px 24px;
+        width: 100%;
+        margin-top: 0;
     }
 
     .mono-title {
         color: var(--accent);
         font-size: 1rem;
-    }
-
-    .info-panel p {
-        color: var(--text-primary);
-        font-size: 1.1rem;
-    }
-
-    .remote-panel {
-        position: relative;
-        bottom: auto;
-        left: auto;
-        right: auto;
-        top: auto;
-        justify-content: space-between;
-        width: 100%;
-        margin-top: auto;
-        padding: 15px 25px;
-        background: rgba(255, 255, 255, 0.75);
-        border: 1px solid rgba(255, 255, 255, 0.8);
-        border-radius: 40px;
-        backdrop-filter: blur(25px);
-        -webkit-backdrop-filter: blur(25px);
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
     }
 
     .mono-number {
@@ -425,6 +449,8 @@ Mobile Adaptability
 
     .minimal-btn {
         background: rgba(255, 255, 255, 0.9);
-        border-color: #fff;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        color: var(--text-primary);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
     }
 }
