@@ -35,8 +35,15 @@ for filename in os.listdir(IMAGES_DIR):
             
         updated_files.append(f'"{safe_name}"')
 
-# Сортируем файлы, чтобы они были по алфавиту/номерам
-updated_files.sort()
+import re
+
+def sort_key(s):
+    # Извлекаем числа из строк для правильной сортировки (1, 2, 10)
+    return [int(text) if text.isdigit() else text.lower()
+            for text in re.split('([0-9]+)', s)]
+
+# Сортируем файлы, чтобы они были по номерам 1, 2, 3 ... 10
+updated_files.sort(key=sort_key)
 files_list_str = ",\n        ".join(updated_files)
 
 # Обновляем script.js

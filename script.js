@@ -3,6 +3,14 @@ document.addEventListener("DOMContentLoaded", () => {
     // 1. Сбор Информации
     const imageFiles = [
         "1.png",
+        "2.png",
+        "3.png",
+        "4.png",
+        "5.png",
+        "6.png",
+        "7.png",
+        "8.png",
+        "9.png",
         "10.png",
         "11.png",
         "12.png",
@@ -13,19 +21,8 @@ document.addEventListener("DOMContentLoaded", () => {
         "17.png",
         "18.png",
         "19.png",
-        "2.png",
-        "20.png",
-        "3.png",
-        "4.png",
-        "5.png",
-        "6.png",
-        "7.png",
-        "8.png",
-        "9.png"
+        "20.png"
     ];
-    for (let i = 1; i <= 20; i++) {
-        imageFiles.push(`${i}.jpg`);
-    }
 
     const maxSlides = imageFiles.length;
     let currentIndex = 0;
