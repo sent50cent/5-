@@ -4,91 +4,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Barbie TV Room Glow</title>
-    <!-- Minimalist Typography -->
+    <title>Director's Treatment | Vision Board</title>
+    <!-- Outfit & Space Mono Fonts -->
     <link
-        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;700&family=Space+Mono:wght@400;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+    <nav class="top-nav">
+        <div class="logo">DIRECTOR'S VISION // PITCH DECK</div>
+        <!-- Link to go back to main site on GitHub Pages -->
+        <!-- Поскольку мы в отдельной ветке, подскажем юзеру -->
+        <a href="#" class="back-link"
+            onclick="alert('Вы находитесь в ветке Balenciaga Showcase!\n\nТВ-версия в полной безопасности лежит в ветке main. Чтобы вернуться к ней, наберите в Терминале:\n\ngit checkout main\n')">ABOUT
+            PROJECT</a>
+    </nav>
 
-    <div class="app-container">
-        <!-- 16:9 Контейнер для точной привязки -->
-        <div class="scene-aspect">
+    <div class="scroll-container" id="scroll-container">
+        <!-- Вводный экран -->
+        <section class="hero">
+            <h1 class="hero-title">VISION<br>BOARD</h1>
+            <div class="hero-subtitle">M/V Director's Treatment // 2026</div>
+            <div class="scroll-indicator">SCROLL TO EXPLORE ↓</div>
+        </section>
 
-            <!-- СЛОЙ 1: ЭКРАН ТЕЛЕВИЗОРА -->
-            <div class="tv-screen-area">
-                <!-- Видео (Слайд 1) -->
-                <video id="current-video" src="images_optimized/video1.mp4" muted playsinline></video>
-                <!-- Изображения (Остальные слайды) -->
-                <img id="current-slide" src="" alt="Slide">
-
-                <!-- Эффекты ЭЛТ телевизора -->
-                <div class="tv-noise"></div>
-                <div class="tv-scanlines"></div>
-                <div class="tv-glare"></div>
-            </div>
-
-            <!-- СЛОЙ 2: КОМНАТА (Multiply наложение вырезает белый прямоугольник) -->
-            <div class="room-layer" style="background-image: url('TV.jpg');"></div>
-
-            <!-- СЛОЙ 3: ДИНАМИЧНОЕ СВЕЧЕНИЕ (Адаптивный Blur) -->
-            <div class="glow-container">
-                <video id="glow-video" src="images_optimized/video1.mp4" muted playsinline></video>
-                <img id="glow-slide" src="" alt="Slide Glow">
-            </div>
-
-        </div>
-
-        <!-- СЛОЙ 4: МИНИМАЛИСТИЧНЫЙ ИНТЕРФЕЙС ПОВЕРХ ВСЕГО -->
-        <div class="floating-ui">
-
-            <!-- Левая плашка: Название -->
-            <div class="info-panel glass-minimal">
-                <div class="info-header">
-                    <span class="pulse-dot"></span>
-                    <h2 id="desc-title" class="mono-title">SCENE_01</h2>
-                </div>
-                <p id="desc-text">Загрузка информации...</p>
-            </div>
-
-            <!-- Правая плашка: Пульт -->
-            <div class="remote-panel glass-minimal">
-                <!-- Индикатор номера слайда -->
-                <div class="slide-counter">
-                    <span id="slide-current" class="mono-number">01</span>
-                    <span class="mono-divider">/</span>
-                    <span id="slide-total" class="mono-number">20</span>
-                </div>
-
-                <!-- Разделитель -->
-                <div class="v-divider"></div>
-
-                <!-- Кнопки пульта -->
-                <div class="remote-controls">
-                    <button id="btn-prev" class="minimal-btn">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M15 18l-6-6 6-6" />
-                        </svg>
-                    </button>
-                    <button id="btn-next" class="minimal-btn">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M9 18l6-6-6-6" />
-                        </svg>
-                    </button>
-                </div>
-            </div>
-
-        </div>
-
+        <!-- Контент инжектится динамически через script.js -->
     </div>
 
-    <!-- GSAP для анимаций -->
+    <!-- GSAP & ScrollTrigger для мощных анимаций скролла -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="script.js"></script>
 </body>
 

@@ -1,213 +1,121 @@
+// Balenciaga / Apple Showcase Engine
+// Powered by GSAP ScrollTrigger
+
+gsap.registerPlugin(ScrollTrigger);
+
+// Director's Pitch Data Array
+const media = [
+    { type: 'video', src: 'images_optimized/video1.mp4', title: "ACT I:<br>THE AWAKENING", desc: "Оупенинг. Медленный наезд камеры (dolly in). Мы задаем масштаб пространства. Обволакивающий объемный свет погружает зрителя в абсолютно стерильную, гиперреалистичную среду." },
+    { type: 'image', src: 'images_optimized/2.png', title: "SCENE 02:<br>THE ICON", desc: "Портретный план. Фокус на фактуре материалов и холодном, 'журнальном' свете. Героиня отстранена, взгляд направлен сквозь объектив. Чистая эстетика high fashion." },
+    { type: 'image', src: 'images_optimized/3.png', title: "SCENE 03:<br>THE WARDROBE", desc: "Симметричная композиция а-ля Уэс Андерсон, утопленная в строгой глянцевой эстетике. Масштаб пространства подчеркивает статус и тотальный контроль героини." },
+    { type: 'image', src: 'images_optimized/4.png', title: "SCENE 04:<br>THE DRIVE", desc: "Динамичный кадр с нижнего ракурса (low angle). Имитация съемки на экстремальный рыбий глаз. Чистая агрессия, скорость и визуальная свобода движения." },
+    { type: 'image', src: 'images_optimized/5.png', title: "SCENE 05:<br>THE FITTING", desc: "Клаустрофобный, интимный кадр. Тяжелая игра света и тени сквозь жалюзи. Современный нео-нуар, переосмысленный через пастельные тона." },
+    { type: 'image', src: 'images_optimized/6.png', title: "SCENE 06:<br>THE ESTATE", desc: "Общий план (Extreme Wide Shot). Парящий дрон-шот. Эпичность архитектуры контрастирует с чувством пугающей изоляции в идеальном мире." },
+    { type: 'image', src: 'images_optimized/7.png', title: "SCENE 07:<br>THE DOLLHOUSE", desc: "Искусственная изометрическая 3D-перспектива. Статичная камера. Актеры позируют как безжизненные манекены. Абсолютный эффект 'зловещей долины'." },
+    { type: 'image', src: 'images_optimized/8.png', title: "SCENE 08:<br>THE STUDIO", desc: "Клиповый, рваный сверхбыстрый монтаж. Обилие макро-деталей, хромированных бликов. Цветокоррекция с жестким уходом в холодный синий неон." },
+    { type: 'image', src: 'images_optimized/9.png', title: "SCENE 09:<br>THE BANQUET", desc: "Сюрреалистичный натюрморт. Идеальная фуд-стилистика, граничащая с абсурдом потребления. Глубокие падающие тени и гипер-высокий контраст." },
+    { type: 'image', src: 'images_optimized/10.png', title: "SCENE 10:<br>THE PRIVILEGE", desc: "Тяжелый дым, плотное контровое освещение. Силуэты выхватываются резкими вспышками блайндеров. Дорогая, закрытая аура элитарного клуба." },
+    { type: 'image', src: 'images_optimized/11.png', title: "SCENE 11:<br>THE STAKES", desc: "Медленное, гипнотическое вращение фишек и купюр (slow-mo 1000fps). Фокус пульсирует, визуализируя нарастающее звуковое напряжение бита." },
+    { type: 'image', src: 'images_optimized/12.png', title: "SCENE 12:<br>THE PULSE", desc: "Кинетический световой формализм. Динамика создается не актерами, а агрессивным движением цветных световых пятен по их застывшим лицам." },
+    { type: 'image', src: 'images_optimized/13.png', title: "SCENE 13:<br>THE HORIZON", desc: "Огромный панорамный задник, который нарочито не скрывает, что он фальшивый. Визуальная метафора тотального отрыва от земной реальности." },
+    { type: 'image', src: 'images_optimized/14.png', title: "SCENE 14:<br>THE FRACTURE", desc: "Безумная ломаная геометрия кадра. Деконструкция пространства с помощью огромных зеркал. Камера агрессивно заваливает горизонт ('голландский угол')." },
+    { type: 'image', src: 'images_optimized/15.png', title: "SCENE 15:<br>THE HAUL", desc: "Fetish-съемка неодушевленных объектов. Обволакивающая пленка, стерильные световые блики на матовом пластике. Гипер-консьюмеризм как искусство." },
+    { type: 'image', src: 'images_optimized/16.png', title: "SCENE 16:<br>THE BREEZE", desc: "Заполняющий, предельно мягкий свет (Soft box). Движение легкой ткани в кадре дает медитативный ритм и заполняет паузу в музыкальном бите." },
+    { type: 'image', src: 'images_optimized/17.png', title: "SCENE 17:<br>THE PEAK", desc: "Ослепляющий прямой солнечный свет. Жесткий визуальный формализм. Композиция кадра математически выстроена строго по золотому сечению." },
+    { type: 'image', src: 'images_optimized/18.png', title: "SCENE 18:<br>THE OASIS", desc: "Вид строго сверху (Top-down shot, God's eye). Абстрактный паттерн из шезлонгов и бликов воды. Гипнотический визуальный релакс перед финалом." },
+    { type: 'image', src: 'images_optimized/19.png', title: "SCENE 19:<br>THE GLARE", desc: "'Папарацци' стайл. Жесткие, стробящие вспышки камер прямо в объектив (Flashing lights). Абсолютный визуальный хаос, глэм и первобытный драйв." },
+    { type: 'image', src: 'images_optimized/20.png', title: "SCENE 20:<br>THE CLIMAX", desc: "Гранд-кадр. Эпилог. Вся мизансцена собирается воедино. Камера плавно, монументально отъезжает назад (dolly out), погружая сцену в глубокую тьму." }
+];
+
 document.addEventListener("DOMContentLoaded", () => {
 
-    // 1. Сбор Информации
-    const imageFiles = [
-        "1.png",
-        "2.png",
-        "3.png",
-        "4.png",
-        "5.png",
-        "6.png",
-        "7.png",
-        "8.png",
-        "9.png",
-        "10.png",
-        "11.png",
-        "12.png",
-        "13.png",
-        "14.png",
-        "15.png",
-        "16.png",
-        "17.png",
-        "18.png",
-        "19.png",
-        "20.png"
-    ];
+    // Простая анимация появления стартового экрана
+    gsap.to('.hero-title', { opacity: 1, y: -20, duration: 1.5, ease: "power3.out", delay: 0.2 });
+    gsap.to('.hero-subtitle', { opacity: 1, y: -10, duration: 1.5, ease: "power3.out", delay: 0.6 });
 
-    const maxSlides = imageFiles.length;
-    let currentIndex = 0;
-    let isAnimating = false; // Блокировка частых кликов
+    const container = document.getElementById('scroll-container');
 
-    const catchphrases = [
-        { title: "SCENE_01", desc: "Главный тизер. Музыкальное шоу, загрузка видеоряда." },
-        { title: "SCENE_02", desc: "Анна на главной сцене. Блики и текстура одежды." },
-        { title: "SCENE_03", desc: "Гардеробная Мечты. Симметрия и масштаб пространства." },
-        { title: "SCENE_04", desc: "Розовый Кабриолет. Динамика и глубина кадра." },
-        { title: "SCENE_05", desc: "Примерочная. Идеальная игра света и тени." },
-        { title: "SCENE_06", desc: "Эпичный Особняк. Широкий архитектурный план." },
-        { title: "SCENE_07", desc: "Студийная Съемка. Идеальные пропорции 'Sims'." },
-        { title: "SCENE_08", desc: "Музыкальная Студия. Детализация инструментов." },
-        { title: "SCENE_09", desc: "Идеальный Ужин. Композиция и фуд-стилистика." },
-        { title: "SCENE_10", desc: "Мужской Клуб. Дымчатая и приватная эстетика." },
-        { title: "SCENE_11", desc: "Азартная Игра. Фокус на фишках и долларах." },
-        { title: "SCENE_12", desc: "Клубная Ночь. Неоновый свет и визуальный ритм." },
-        { title: "SCENE_13", desc: "Воздушная Прогулка. Огромные элементы природы." },
-        { title: "SCENE_14", desc: "Сердце-Зеркало. Искусственная 3D перспектива." },
-        { title: "SCENE_15", desc: "Покупка. Крупная фактура матового пластика." },
-        { title: "SCENE_16", desc: "Летний Бриз. Освещение, движение и легкость." },
-        { title: "SCENE_17", desc: "Пуховик в Раю. Яркий залитый солнцем кадр." },
-        { title: "SCENE_18", desc: "Релакс у Бассейна. Розовые шезлонги и вода." },
-        { title: "SCENE_19", desc: "Гламурная Вечеринка. Контраст и вспышки камер." },
-        { title: "SCENE_20", desc: "Гранд-Финал. Общий план всех элементов." }
-    ];
+    // 1. Динамическая Генерация DOM-дерева контента
+    media.forEach((item, index) => {
+        const isVideo = item.type === 'video';
 
-    // 2. DOM Elements
-    // Основные элементы
-    const screenImg = document.getElementById('current-slide');
-    const videoElem = document.getElementById('current-video');
+        // Рендерим теги video или img
+        const mediaTag = isVideo
+            ? `<video class="scene-media" src="${item.src}" muted loop playsinline></video>`
+            : `<img class="scene-media" src="${item.src}" alt="${item.title.replace('<br>', ' ')}">`;
 
-    // Элементы динамичного СВЕЧЕНИЯ
-    const glowImg = document.getElementById('glow-slide');
-    const glowVideo = document.getElementById('glow-video');
+        const slideNumber = String(index + 1).padStart(2, '0');
 
-    const descTitle = document.getElementById('desc-title');
-    const descText = document.getElementById('desc-text');
-    const slideCurrent = document.getElementById('slide-current');
-    const slideTotal = document.getElementById('slide-total');
-    const btnPrev = document.getElementById('btn-prev');
-    const btnNext = document.getElementById('btn-next');
-
-    slideTotal.innerHTML = String(maxSlides).padStart(2, '0');
-
-    // 3. Events - AUTO PLAY LOGIC
-    // Сценарий: Как только видео завершилось, ВРУБИТЬ СЛАЙД 2 АВТОМАТИЧЕСКИ
-    videoElem.addEventListener('ended', () => {
-        if (!isAnimating && currentIndex === 0) {
-            changeSlide(1);
-        }
+        // Собираем HTML блок
+        container.innerHTML += `
+            <section class="scene-block" id="scene-${index}">
+                <div class="media-wrapper">
+                    ${mediaTag}
+                </div>
+                <div class="scene-text-overlay">
+                    <span class="scene-number">SHOT ${slideNumber} / 20</span>
+                    <h2 class="scene-title">${item.title}</h2>
+                    <p class="scene-desc">${item.desc}</p>
+                </div>
+            </section>
+        `;
     });
 
-    // Initial Load
-    updateContent(0, 0);
+    // 2. Инициализация Анимаций ScrollTrigger 
+    // Даем небольшую задержку, чтобы DOM успел отрендериться
+    setTimeout(() => {
 
-    // 4. Events - BUTTON LOGIC
-    btnNext.addEventListener('click', () => {
-        if (isAnimating) return;
-        if (currentIndex < maxSlides - 1) {
-            changeSlide(1);
-        } else {
-            // Эффект пружинки при сбое переключения в конец
-            const activeElem = currentIndex === 0 ? videoElem : screenImg;
-            gsap.fromTo(activeElem, { scale: 0.98 }, { scale: 1, duration: 0.2, ease: "bounce.out" });
-        }
-    });
+        const sections = gsap.utils.toArray('.scene-block');
 
-    btnPrev.addEventListener('click', () => {
-        if (isAnimating) return;
-        if (currentIndex > 0) {
-            changeSlide(-1);
-        } else {
-            const activeElem = currentIndex === 0 ? videoElem : screenImg;
-            gsap.fromTo(activeElem, { scale: 0.98 }, { scale: 1, duration: 0.2, ease: "bounce.out" });
-        }
-    });
+        sections.forEach((section) => {
+            const mediaWrapper = section.querySelector('.media-wrapper');
+            const mediaElem = section.querySelector('.scene-media');
+            const textOverlay = section.querySelector('.scene-text-overlay');
 
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowRight' || e.key === 'd') btnNext.click();
-        if (e.key === 'ArrowLeft' || e.key === 'a') btnPrev.click();
-    });
+            // Задаем базовое состояние до того как произойдет скролл (Сжатая картинка, текст внизу)
+            gsap.set(mediaWrapper, { clipPath: 'inset(15% 15% 15% 15%)', opacity: 0, scale: 0.95 });
+            gsap.set(textOverlay, { y: 100, opacity: 0 });
 
-    // 5. Logic Functions: TV GLITCH ANIMATION
-    function changeSlide(direction) {
-        if (isAnimating) return;
-        isAnimating = true;
-
-        const nextIndex = currentIndex + direction;
-
-        // Текущие видимые экраны
-        const activeElemCurrent = currentIndex === 0 ? videoElem : screenImg;
-        const activeGlowCurrent = currentIndex === 0 ? glowVideo : glowImg;
-
-        // Вспышка ШУМА из 90-х как при переключении ЭЛТ телевизора
-        gsap.to('.tv-noise', { opacity: 0.6, duration: 0.2, yoyo: true, repeat: 1, ease: "sine.inOut" });
-
-        // Эффект ВЫКЛЮЧЕНИЯ канала (плавное схлопывание)
-        gsap.to([activeElemCurrent, activeGlowCurrent], {
-            scaleY: 0.02,
-            scaleX: 1.02,
-            opacity: 0,
-            filter: "brightness(2) grayscale(0.5)",
-            duration: 0.25,
-            ease: "power2.inOut",
-            onComplete: () => {
-
-                // Переключаем сам контент
-                currentIndex = nextIndex;
-                updateContent(currentIndex, direction);
-
-                // Будущие видимые экраны
-                const activeElemNext = currentIndex === 0 ? videoElem : screenImg;
-                const activeGlowNext = currentIndex === 0 ? glowVideo : glowImg;
-
-                // Включаем новый канал (Плавное разворачивание)
-                gsap.fromTo([activeElemNext, activeGlowNext],
-                    { scaleY: 0.02, scaleX: 1.02, filter: "brightness(2) grayscale(0.5)", opacity: 1 },
-                    {
-                        scaleY: 1, scaleX: 1, filter: "brightness(1) saturate(1.1) grayscale(0)", duration: 0.35, ease: "power3.out",
-                        onComplete: () => setTimeout(() => { isAnimating = false; }, 100)
+            // Таймлайн появления (Fade In & Scale Up)
+            const tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: section,
+                    start: "top 75%", // Срабатывает когда верх секции достигает 75% экрана
+                    end: "bottom 30%",
+                    toggleActions: "play reverse play reverse", // Проигрывать туда-обратно
+                    onEnter: () => {
+                        if (mediaElem.tagName === 'VIDEO') mediaElem.play().catch(() => { });
                     }
-                );
-            }
+                }
+            });
+
+            // Магия появления а-ля Apple
+            tl.to(mediaWrapper, {
+                clipPath: 'inset(0% 0% 0% 0%)',
+                opacity: 1,
+                scale: 1,
+                duration: 1.4,
+                ease: "power3.out"
+            }, 0)
+                .to(textOverlay, {
+                    y: 0,
+                    opacity: 1,
+                    duration: 1.2,
+                    ease: "power3.out"
+                }, 0.2); // Текст выплывает с мили-задержкой
+
+            // Эффект Параллакса (Parallax) – Картинка внутри рамки едет медленнее чем страница
+            gsap.to(mediaElem, {
+                yPercent: 15,
+                ease: "none",
+                scrollTrigger: {
+                    trigger: section,
+                    start: "top bottom",
+                    end: "bottom top",
+                    scrub: true // Анимация привязывается к позиции колесика мышки
+                }
+            });
         });
 
-        // Плавная анимация интерфейса (текст и номер слайда как у Apple)
-        gsap.fromTo([descTitle, descText, slideCurrent],
-            { y: Math.sign(direction) * 15, opacity: 0 },
-            { y: 0, opacity: 1, duration: 0.4, stagger: 0.05, ease: "power2.out" }
-        );
-    }
-
-    // 6. Обновление Source для Главного экрана и контейнера Glow
-    function updateContent(index, direction) {
-
-        // --- 01. ВИДЕО --- 
-        if (index === 0) {
-            screenImg.style.display = 'none';
-            glowImg.style.display = 'none';
-
-            videoElem.style.display = 'block';
-            glowVideo.style.display = 'block';
-
-            // Включаем оба видео синхронно с начала
-            videoElem.currentTime = 0;
-            glowVideo.currentTime = 0;
-            videoElem.play().catch(e => console.log("Autoplay blocked:", e));
-            glowVideo.play().catch(e => { });
-
-        }
-        // --- 02-20. ФОТОГРАФИИ ---
-        else {
-            videoElem.style.display = 'none';
-            glowVideo.style.display = 'none';
-            videoElem.pause();
-            glowVideo.pause();
-
-            screenImg.style.display = 'block';
-            glowImg.style.display = 'block';
-
-            // Меняем source у обеих картинок
-            const imgSrc = `images_optimized/${imageFiles[index]}`;
-            screenImg.src = imgSrc;
-            glowImg.src = imgSrc;
-        }
-
-        // --- TEXT DATA ---
-        const defaultData = { title: `SCENE_${String(index + 1).padStart(2, '0')}`, desc: "Данные загружаются..." };
-        const data = catchphrases[index] || defaultData;
-
-        descTitle.innerHTML = data.title;
-        descText.innerHTML = data.desc;
-        slideCurrent.innerHTML = String(index + 1).padStart(2, '0');
-
-        // --- UI BUTTON STATE ---
-        btnPrev.style.opacity = index === 0 ? "0.3" : "1";
-        btnPrev.style.cursor = index === 0 ? "default" : "pointer";
-
-        btnNext.style.opacity = index === maxSlides - 1 ? "0.3" : "1";
-        btnNext.style.cursor = index === maxSlides - 1 ? "default" : "pointer";
-    }
-
-    // Легкая анимация появления UI при самой первой загрузке страницы
-    gsap.fromTo('.info-panel', { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, delay: 0.5, ease: "power3.out" });
-    gsap.fromTo('.remote-panel', { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, delay: 0.6, ease: "power3.out" });
+    }, 100);
 });
