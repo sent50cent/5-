@@ -420,20 +420,34 @@ h1.pixel-text,
     background: transparent;
 }
 
-/* SVG Pixel Clouds using multiple backgrounds */
+/* PIXEL CLOUDS LAYER SYSTEM */
 .pixel-clouds {
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    top: -50%;
+    left: -50%;
+    right: -50%;
+    bottom: -50%;
+    /* Make them huge so parallax doesn't show edges */
     pointer-events: none;
     z-index: 10;
-    /* Drawing abstract horizontal stepped pixel cloud */
-    background-image:
-        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 5'%3E%3Cpath fill='rgba(0,0,0,0.03)' d='M2,2 h2 v-1 h3 v1 h2 v2 h-1 v1 h-5 v-1 h-1 z'/%3E%3C/svg%3E"),
-        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 5'%3E%3Cpath fill='rgba(255,105,180,0.08)' d='M2,2 h2 v-1 h3 v1 h2 v2 h-1 v1 h-5 v-1 h-1 z'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-size: 150px, 200px;
-    background-position: left 2% top 15%, right 2% bottom 15%;
+    background-repeat: repeat;
+    will-change: transform;
+}
+
+.pixel-clouds.layer-bg {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 5'%3E%3Cpath fill='rgba(0,0,0,0.03)' d='M2,2 h2 v-1 h3 v1 h2 v2 h-1 v1 h-5 v-1 h-1 z'/%3E%3C/svg%3E");
+    background-size: 150px;
+}
+
+.pixel-clouds.layer-mid {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 5'%3E%3Cpath fill='rgba(255,105,180,0.05)' d='M2,2 h2 v-1 h3 v1 h2 v2 h-1 v1 h-5 v-1 h-1 z'/%3E%3C/svg%3E");
+    background-size: 250px;
+    background-position: 50px 100px;
+}
+
+.pixel-clouds.layer-fg {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 5'%3E%3Cpath fill='rgba(0,0,0,0.04)' d='M2,2 h2 v-1 h3 v1 h2 v2 h-1 v1 h-5 v-1 h-1 z'/%3E%3C/svg%3E");
+    background-size: 400px;
+    background-position: 150px 300px;
+    z-index: 11;
 }
