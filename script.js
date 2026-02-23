@@ -21,7 +21,11 @@ document.addEventListener("DOMContentLoaded", () => {
         "17.png",
         "18.png",
         "19.png",
-        "20.png"
+        "20.png",
+        "21.png",
+        "22.png",
+        "23.png",
+        "24.png"
     ];
 
     const maxSlides = imageFiles.length;
@@ -30,25 +34,30 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const catchphrases = [
         { title: "SCENE_01", desc: "Главный тизер. Музыкальное шоу, загрузка видеоряда." },
-        { title: "SCENE_02", desc: "Анна на главной сцене. Блики и текстура одежды." },
-        { title: "SCENE_03", desc: "Гардеробная Мечты. Симметрия и масштаб пространства." },
-        { title: "SCENE_04", desc: "Розовый Кабриолет. Динамика и глубина кадра." },
-        { title: "SCENE_05", desc: "Примерочная. Идеальная игра света и тени." },
-        { title: "SCENE_06", desc: "Эпичный Особняк. Широкий архитектурный план." },
-        { title: "SCENE_07", desc: "Студийная Съемка. Идеальные пропорции 'Sims'." },
-        { title: "SCENE_08", desc: "Музыкальная Студия. Детализация инструментов." },
-        { title: "SCENE_09", desc: "Идеальный Ужин. Композиция и фуд-стилистика." },
-        { title: "SCENE_10", desc: "Мужской Клуб. Дымчатая и приватная эстетика." },
-        { title: "SCENE_11", desc: "Азартная Игра. Фокус на фишках и долларах." },
-        { title: "SCENE_12", desc: "Клубная Ночь. Неоновый свет и визуальный ритм." },
-        { title: "SCENE_13", desc: "Воздушная Прогулка. Огромные элементы природы." },
-        { title: "SCENE_14", desc: "Сердце-Зеркало. Искусственная 3D перспектива." },
-        { title: "SCENE_15", desc: "Покупка. Крупная фактура матового пластика." },
-        { title: "SCENE_16", desc: "Летний Бриз. Освещение, движение и легкость." },
-        { title: "SCENE_17", desc: "Пуховик в Раю. Яркий залитый солнцем кадр." },
-        { title: "SCENE_18", desc: "Релакс у Бассейна. Розовые шезлонги и вода." },
-        { title: "SCENE_19", desc: "Гламурная Вечеринка. Контраст и вспышки камер." },
-        { title: "SCENE_20", desc: "Гранд-Финал. Общий план всех элементов." }
+        { title: "SCENE_02", desc: "Шоу-рум. Неоновые акценты и глянцевый манекен." },
+        { title: "SCENE_03", desc: "Архитектура. Глубокая симметрия и пастельные тона." },
+        { title: "SCENE_04", desc: "Крупный План. Идеальная пластика и свет." },
+        { title: "SCENE_05", desc: "Студия. Минимализм, геометрия теней и пустоты." },
+        { title: "SCENE_06", desc: "Внимание к Деталям. Текстура одежды крупным планом." },
+        { title: "SCENE_07", desc: "Глянец. Дорогой журнальный сеттинг." },
+        { title: "SCENE_08", desc: "Абсолютная Роскошь. Розовый интерьер и мягкий блюр." },
+        { title: "SCENE_09", desc: "В движении. Размытие и эффект скорости." },
+        { title: "SCENE_10", desc: "Контраст. Строгий силуэт на светлом фоне." },
+        { title: "SCENE_11", desc: "Гардеробная Мечты. Запредельный масштаб." },
+        { title: "SCENE_12", desc: "Арт-Объект. Футуристичный дизайн и холодный свет." },
+        { title: "SCENE_13", desc: "Ожидание. Интимная и кинематографичная мизансцена." },
+        { title: "SCENE_14", desc: "Высокая Мода. Безупречная стилистика кадра." },
+        { title: "SCENE_15", desc: "За сценой. Атмосфера бэкстейджа." },
+        { title: "SCENE_16", desc: "Силуэт. Игра с контровым светом." },
+        { title: "SCENE_17", desc: "Интерьер. Классика в современной обработке." },
+        { title: "SCENE_18", desc: "Городской Шик. Урбанистический фон и неон." },
+        { title: "SCENE_19", desc: "Стритстайл. Динамичный уличный сеттинг." },
+        { title: "SCENE_20", desc: "Абстракция. Форма, цвет и отсутствие лишнего." },
+        { title: "SCENE_21", desc: "Новый Ракурс. Нестандартная операторская работа." },
+        { title: "SCENE_22", desc: "Идеальный Ужин. Фуд-стилистика и композиция." },
+        { title: "SCENE_23", desc: "Мужской Клуб. Дымчатая и приватная эстетика." },
+        { title: "SCENE_24", desc: "Азартная Игра. Фокус на фишках и деталях." },
+        { title: "SCENE_25", desc: "Гранд-Финал. Общий план всех элементов." }
     ];
 
     // 2. DOM Elements
@@ -76,6 +85,30 @@ document.addEventListener("DOMContentLoaded", () => {
             changeSlide(1);
         }
     });
+
+    // --- ЛОДЕР И ПЛАВНЫЙ СТАРТ ---
+    const pinkLoader = document.getElementById('pink-loader');
+
+    function removeLoader() {
+        if (!pinkLoader) return;
+        pinkLoader.style.opacity = '0';
+        pinkLoader.style.transform = 'scale(1.1)'; // легкий зум при исчезновении
+        setTimeout(() => pinkLoader.remove(), 800); // Полностью удаляем из DOM
+
+        // Как только Лодер спрятали запускаем UI
+        gsap.fromTo('.info-panel', { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, delay: 0.2, ease: "power3.out" });
+        gsap.fromTo('.remote-panel', { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, delay: 0.3, ease: "power3.out" });
+    }
+
+    // Если видео уже в кэше и готово
+    if (videoElem.readyState >= 3) {
+        removeLoader();
+    } else {
+        // Ждем пока видео скачается
+        videoElem.addEventListener('canplay', removeLoader);
+        // Запасной таймер на случай багов браузера (сработает через 4с)
+        setTimeout(removeLoader, 4000);
+    }
 
     // Initial Load
     updateContent(0, 0);
@@ -206,8 +239,4 @@ document.addEventListener("DOMContentLoaded", () => {
         btnNext.style.opacity = index === maxSlides - 1 ? "0.3" : "1";
         btnNext.style.cursor = index === maxSlides - 1 ? "default" : "pointer";
     }
-
-    // Легкая анимация появления UI при самой первой загрузке страницы
-    gsap.fromTo('.info-panel', { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, delay: 0.5, ease: "power3.out" });
-    gsap.fromTo('.remote-panel', { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, delay: 0.6, ease: "power3.out" });
 });
