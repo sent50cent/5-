@@ -430,24 +430,32 @@ h1.pixel-text,
     /* Make them huge so parallax doesn't show edges */
     pointer-events: none;
     z-index: 10;
-    background-repeat: repeat;
     will-change: transform;
+    background-repeat: repeat-y;
+    /* Repeat only vertically, keeping them on the sides */
 }
 
 .pixel-clouds.layer-bg {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 5'%3E%3Cpath fill='rgba(0,0,0,0.03)' d='M2,2 h2 v-1 h3 v1 h2 v2 h-1 v1 h-5 v-1 h-1 z'/%3E%3C/svg%3E");
-    background-size: 150px;
+    background-image:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 200'%3E%3Cpath fill='rgba(0,0,0,0.03)' d='M2,10 h2 v-1 h3 v1 h2 v2 h-1 v1 h-5 v-1 h-1 z'/%3E%3C/svg%3E"),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 300'%3E%3Cpath fill='rgba(0,0,0,0.02)' d='M5,150 h2 v-1 h3 v1 h2 v2 h-1 v1 h-5 v-1 h-1 z'/%3E%3C/svg%3E");
+    background-size: 250px auto, 300px auto;
+    background-position: left calc(25% + 10px) top 0, right calc(25% + 20px) top 50px;
 }
 
 .pixel-clouds.layer-mid {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 5'%3E%3Cpath fill='rgba(255,105,180,0.05)' d='M2,2 h2 v-1 h3 v1 h2 v2 h-1 v1 h-5 v-1 h-1 z'/%3E%3C/svg%3E");
-    background-size: 250px;
-    background-position: 50px 100px;
+    background-image:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 250'%3E%3Cpath fill='rgba(255,105,180,0.05)' d='M2,50 h2 v-1 h3 v1 h2 v2 h-1 v1 h-5 v-1 h-1 z'/%3E%3C/svg%3E"),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 25 150'%3E%3Cpath fill='rgba(255,105,180,0.04)' d='M10,80 h2 v-1 h3 v1 h2 v2 h-1 v1 h-5 v-1 h-1 z'/%3E%3C/svg%3E");
+    background-size: 400px auto, 350px auto;
+    background-position: left calc(25% + 50px) top 100px, right calc(25% + 60px) top 20px;
 }
 
 .pixel-clouds.layer-fg {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 5'%3E%3Cpath fill='rgba(0,0,0,0.04)' d='M2,2 h2 v-1 h3 v1 h2 v2 h-1 v1 h-5 v-1 h-1 z'/%3E%3C/svg%3E");
-    background-size: 400px;
-    background-position: 150px 300px;
+    background-image:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 400'%3E%3Cpath fill='rgba(0,0,0,0.04)' d='M5,300 h2 v-1 h3 v1 h2 v2 h-1 v1 h-5 v-1 h-1 z'/%3E%3C/svg%3E"),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 300'%3E%3Cpath fill='rgba(0,0,0,0.03)' d='M10,10 h2 v-1 h3 v1 h2 v2 h-1 v1 h-5 v-1 h-1 z'/%3E%3C/svg%3E");
+    background-size: 600px auto, 500px auto;
+    background-position: left calc(25% + 15px) top 300px, right calc(25% + 40px) top 150px;
     z-index: 11;
 }
