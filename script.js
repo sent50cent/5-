@@ -90,4 +90,22 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
+    // --- FORCE PLAY VIDEOS ON MOBILE/SAFARI ---
+    const forcePlayVideos = () => {
+        allVideos.forEach(vid => {
+            if (vid.paused && vid.readyState >= 2) {
+                vid.play().catch(e => {
+                    /* Catch playback errors smoothly (e.g. strict document interactions) */
+                });
+            }
+        });
+    };
+
+    // Check periodically to ensure no video randomly freezes in carousel
+    setInterval(forcePlayVideos, 1000);
+
+    // Also try to play on interaction just in case
+    document.addEventListener('touchstart', forcePlayVideos, { passive: true });
+    document.addEventListener('click', forcePlayVideos, { passive: true });
+
 });
