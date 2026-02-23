@@ -4,104 +4,164 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Barbie TV Room Glow</title>
-    <!-- Minimalist Typography -->
+    <title>Barbie Y2K Landing</title>
+    <!-- Modern + Bubble Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=DynaPuff:wght@400;600;700&family=Outfit:wght@300;400;500;700&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=3">
+    <link rel="stylesheet" href="style.css?v=5">
 </head>
 
 <body>
 
-    <!-- Экран загрузки видео (Исчезает, когда видео готово) -->
-    <div id="pink-loader" class="pink-loader">
-        <div class="loader-content">
-            <svg class="spinning-heart" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-                <path
-                    d="M16 28.72l-1.4-1.28C8.98 22.34 5 18.73 5 14.1 5 10.32 7.82 7.5 11.6 7.5c2.14 0 4.19 1.01 5.4 2.62C18.21 8.51 20.26 7.5 22.4 7.5 26.18 7.5 29 10.32 29 14.1c0 4.63-3.98 8.24-9.6 13.34L16 28.72z"
-                    fill="#fff" />
-            </svg>
-            <div class="loader-text">ЗАГРУЗКА...</div>
-        </div>
+    <!-- Y2K Floating Background Blurs -->
+    <div class="y2k-bg">
+        <div class="blob b1"></div>
+        <div class="blob b2"></div>
+        <div class="blob b3"></div>
     </div>
 
-    <div class="app-container">
-        <!-- 16:9 Контейнер для точной привязки -->
-        <div class="scene-aspect">
+    <!-- MAIN LANDING CONTENT -->
+    <main class="landing-wrapper">
 
-            <!-- СЛОЙ 1: ЭКРАН ТЕЛЕВИЗОРА -->
-            <div class="tv-screen-area">
-                <!-- Видео (Слайд 1) -->
-                <video id="current-video" src="images_optimized/video1.mp4" muted playsinline></video>
-                <!-- Изображения (Остальные слайды) -->
-                <img id="current-slide" src="" alt="Slide">
-
-                <!-- Эффекты ЭЛТ телевизора -->
-                <div class="tv-noise"></div>
-                <div class="tv-scanlines"></div>
-                <div class="tv-glare"></div>
-            </div>
-
-            <!-- СЛОЙ 2: КОМНАТА (Multiply наложение вырезает белый прямоугольник) -->
-            <div class="room-layer" style="background-image: url('TV.jpg');"></div>
-
-            <!-- СЛОЙ 3: ДИНАМИЧНОЕ СВЕЧЕНИЕ (Адаптивный Blur) -->
-            <div class="glow-container">
-                <video id="glow-video" src="images_optimized/video1.mp4" muted playsinline></video>
-                <img id="glow-slide" src="" alt="Slide Glow">
-            </div>
-
-        </div>
-
-        <!-- СЛОЙ 4: МИНИМАЛИСТИЧНЫЙ ИНТЕРФЕЙС ПОВЕРХ ВСЕГО -->
-        <div class="floating-ui">
-
-            <!-- Левая плашка: Название -->
-            <div class="info-panel glass-minimal">
-                <div class="info-header">
-                    <span class="pulse-dot"></span>
-                    <h2 id="desc-title" class="mono-title">SCENE_01</h2>
+        <!-- 1 БЛОК: Фото 1 на фоне, текст по центру (Стиль Y2K окна) -->
+        <section class="block hero-block" style="background-image: url('images_optimized/1.png')">
+            <div class="overlay"></div>
+            <div class="liquid-glass y2k-window slide-up">
+                <div class="window-bar">
+                    <div class="dots">
+                        <span class="dot red"></span>
+                        <span class="dot yellow"></span>
+                        <span class="dot green"></span>
+                    </div>
+                    <span class="window-title">C:\BARBIE\STYLE.EXE</span>
                 </div>
-                <p id="desc-text">Загрузка информации...</p>
-            </div>
-
-            <!-- Правая плашка: Пульт -->
-            <div class="remote-panel glass-minimal">
-                <!-- Индикатор номера слайда -->
-                <div class="slide-counter">
-                    <span id="slide-current" class="mono-number">01</span>
-                    <span class="mono-divider">/</span>
-                    <span id="slide-total" class="mono-number">20</span>
-                </div>
-
-                <!-- Разделитель -->
-                <div class="v-divider"></div>
-
-                <!-- Кнопки пульта -->
-                <div class="remote-controls">
-                    <button id="btn-prev" class="minimal-btn">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M15 18l-6-6 6-6" />
-                        </svg>
-                    </button>
-                    <button id="btn-next" class="minimal-btn">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M9 18l6-6-6-6" />
-                        </svg>
-                    </button>
+                <div class="window-content">
+                    <h1 class="bloop-title">Визуальный стиль:</h1>
+                    <p class="desc-text text-bold">ИИ Анимация в духе Мира Барби + розовая гламурная эстетика (яркие
+                        контуры, блестки, сердечки, стилизованные интерфейсы игры). Всё выглядит как геймплей игры, но с
+                        кинематографическими камерами и поп-глянцем.</p>
                 </div>
             </div>
+        </section>
 
-        </div>
+        <!-- 2 БЛОК: Видео и Текст (Liquid Glass панели) -->
+        <section class="block split-block">
+            <div class="split-col visual-col">
+                <div class="liquid-glass media-box">
+                    <video src="images_optimized/video1.mp4" autoplay loop muted playsinline></video>
+                </div>
+            </div>
+            <div class="split-col text-col">
+                <h2 class="bloop-title gradient-text">Экран загрузки<br>(Интро)</h2>
+                <div class="liquid-glass info-card">
+                    <p>Розовый экран загрузки с полосой прогресса и логотипом 5 Утра, пиксельные сердечки летают.</p>
+                    <p>Камера пролетает через яркий мир Симс: розовый особняк, бассейн с единорогами, голографические
+                        шопинг-моллы.</p>
+                </div>
+            </div>
+        </section>
 
-    </div>
+        <!-- 3 БЛОК: Фото 4 и 9 -->
+        <section class="block grid-section">
+            <div class="section-head text-center">
+                <h2 class="bloop-title solid-pink">Персонажи</h2>
+                <div class="liquid-glass info-card center-card">
+                    <p>Показываем Персонажей в упаковках как Барби и Кен.<br>Персонажи просыпаются и выходят из своих
+                        упаковок.</p>
+                </div>
+            </div>
+            <div class="media-grid cols-2">
+                <div class="liquid-glass media-box photo">
+                    <img src="images_optimized/4.png" alt="Barbie Box 1">
+                </div>
+                <div class="liquid-glass media-box photo">
+                    <img src="images_optimized/9.png" alt="Barbie Box 2">
+                </div>
+            </div>
+        </section>
 
-    <!-- GSAP для анимаций -->
+        <!-- 4 БЛОК: Кукольный домик + 3 заглушки -->
+        <section class="block grid-section">
+            <div class="section-head text-center">
+                <h2 class="bloop-title solid-purple">Кукольный Домик</h2>
+                <div class="liquid-glass info-card center-card mega-card">
+                    <p>Миниатюрный кукольный домик в разрезе, несколько комнат с уютным интерьером, куклы занимаются
+                        домашними делами — готовят, убирают, поливают цветы. Тёплый мягкий свет, пастельные тона,
+                        высокая детализация, макросъёмка, атмосферная сцена.</p>
+                </div>
+            </div>
+            <div class="media-grid cols-3 placeholders">
+                <div class="liquid-glass media-box slot">
+                    <div class="slot-inner"><span>СЛОТ ФОТО</span></div>
+                </div>
+                <div class="liquid-glass media-box slot">
+                    <div class="slot-inner"><span>СЛОТ ФОТО</span></div>
+                </div>
+                <div class="liquid-glass media-box slot">
+                    <div class="slot-inner"><span>СЛОТ ФОТО</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5 БЛОК: Фото 3, 5, 8 и 3 заглушки -->
+        <section class="block grid-section">
+            <div class="section-head text-center">
+                <h2 class="bloop-title solid-pink">Город & Шопинг</h2>
+                <div class="liquid-glass info-card center-card">
+                    <p>Молодая девушка Аня едет по городу за покупками в солнечный день, она идёт по уютной улице с
+                        витринами магазинов и пакетами в руках. На площади она встречается с подругами, они обнимаются,
+                        смеются и вместе рассматривают покупки у кафе с летней террасой.</p>
+                </div>
+            </div>
+            <div class="media-grid cols-3 mixed">
+                <div class="liquid-glass media-box photo">
+                    <img src="images_optimized/3.png" alt="Анна в городе 1">
+                </div>
+                <div class="liquid-glass media-box photo">
+                    <img src="images_optimized/5.png" alt="Анна в городе 2">
+                </div>
+                <div class="liquid-glass media-box photo">
+                    <img src="images_optimized/8.png" alt="Анна в городе 3">
+                </div>
+                <div class="liquid-glass media-box slot">
+                    <div class="slot-inner"><span>СЛОТ ФОТО</span></div>
+                </div>
+                <div class="liquid-glass media-box slot">
+                    <div class="slot-inner"><span>СЛОТ ФОТО</span></div>
+                </div>
+                <div class="liquid-glass media-box slot">
+                    <div class="slot-inner"><span>СЛОТ ФОТО</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6 БЛОК: Фото 11 и 12 (Мужской блок) -->
+        <section class="block split-block reverse">
+            <div class="split-col text-col">
+                <h2 class="bloop-title gradient-text-blue">Клуб & Игра</h2>
+                <div class="liquid-glass info-card">
+                    <p>Никита часто проводит вечера с друзьями: они сидят вместе, курят кальян, болтают, играют в покер
+                        и соревнуются на приставке.</p>
+                </div>
+            </div>
+            <div class="split-col visual-col stacked-photos">
+                <div class="liquid-glass media-box photo stack-top">
+                    <img src="images_optimized/11.png" alt="Никита 1">
+                </div>
+                <div class="liquid-glass media-box photo stack-bottom">
+                    <img src="images_optimized/12.png" alt="Никита 2">
+                </div>
+            </div>
+        </section>
+
+    </main>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="script.js?v=3"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="script.js?v=4"></script>
 </body>
 
 </html>
