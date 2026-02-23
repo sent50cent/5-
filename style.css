@@ -342,7 +342,8 @@ h1.pixel-text,
 }
 
 .carousel-track .video-loader-wrapper {
-    width: 300px;
+    width: 450px;
+    /* Увеличено на 50% по просьбе */
     aspect-ratio: 16/9;
     flex-shrink: 0;
     overflow: hidden;
@@ -368,7 +369,7 @@ h1.pixel-text,
 
 @media (max-width: 900px) {
     .carousel-track .video-loader-wrapper {
-        width: 200px;
+        width: 300px;
     }
 }
 
