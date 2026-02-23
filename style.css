@@ -194,12 +194,14 @@ html {
 
 .glass-minimal {
     pointer-events: auto;
-    background: var(--glass-bg);
-    backdrop-filter: var(--glass-blur);
-    -webkit-backdrop-filter: var(--glass-blur);
-    border: 1px solid var(--glass-border);
+    background: rgba(255, 255, 255, 0.75);
+    /* Плотный белый цвет, убираем "грязь" */
+    backdrop-filter: blur(35px);
+    -webkit-backdrop-filter: blur(35px);
+    border: 1px solid rgba(255, 255, 255, 0.8);
     border-radius: 20px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+    /* Легкая тень вместо грязной черной */
 }
 
 /* --- Левая плашка --- */
@@ -208,7 +210,8 @@ html {
     bottom: 50px;
     left: 50px;
     padding: 24px 30px;
-    max-width: 420px;
+    max-width: 480px;
+    /* Шире для длинного текста в 2 строки */
 }
 
 .info-header {
@@ -243,24 +246,23 @@ html {
 
 .mono-title {
     font-family: var(--font-sans);
-    /* Более ясный современный заголовок */
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: var(--text-primary);
-    letter-spacing: -0.02em;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #111;
+    /* Четкий черный цвет */
+    letter-spacing: 0.02em;
     text-transform: uppercase;
 }
 
 .info-panel p {
-    font-family: var(--font-mono);
-    /* Текст теперь строгим мелким шрифтом */
-    font-size: 0.85rem;
-    color: var(--text-secondary);
-    line-height: 1.5;
-    font-weight: 400;
-    opacity: 0.9;
-    border-top: 1px solid rgba(0, 0, 0, 0.05);
-    /* Легкий разделитель */
+    font-family: var(--font-sans);
+    /* Чистый шрифт для читабельности текста */
+    font-size: 0.95rem;
+    color: #333;
+    /* Плотный темный цвет вместо бледно-серого */
+    line-height: 1.6;
+    font-weight: 500;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
     padding-top: 12px;
 }
 
@@ -408,9 +410,16 @@ Mobile Adaptability
     }
 
     .info-panel p {
-        color: var(--text-primary);
-        font-size: 1.05rem;
-        margin-top: 4px;
+        font-family: var(--font-sans);
+        color: #333;
+        /* Твердый темный цвет для отличной читаемости на мобилках */
+        font-size: 0.95rem;
+        font-weight: 500;
+        margin-top: 8px;
+        line-height: 1.5;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+        /* Легкая линия разделения */
+        padding-top: 8px;
     }
 
     .remote-panel {
@@ -441,8 +450,12 @@ Mobile Adaptability
     }
 
     .mono-title {
-        color: var(--accent);
-        font-size: 1rem;
+        font-family: var(--font-sans);
+        color: #111;
+        /* Строгий черный вместо розового для читаемости */
+        font-size: 1.15rem;
+        font-weight: 700;
+        letter-spacing: 0.02em;
     }
 
     .mono-number {
