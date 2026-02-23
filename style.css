@@ -50,17 +50,21 @@ h1.pixel-text,
 }
 
 .body-text {
-    font-size: 1.15rem;
+    font-size: 1.05rem;
+    /* Сделано небольшим и минималистичным по запросу */
     font-weight: 500;
-    line-height: 1.5;
+    line-height: 1.6;
     letter-spacing: -0.01em;
+    max-width: 900px;
+    /* Чтобы длинные строки не ползли на весь экран */
 }
 
 .body-text-lg {
-    font-size: 1.5rem;
-    font-weight: 700;
-    line-height: 1.4;
-    letter-spacing: -0.02em;
+    font-size: 1.05rem;
+    /* Убираем гигантские размеры */
+    font-weight: 500;
+    line-height: 1.6;
+    letter-spacing: -0.01em;
 }
 
 /* Colors */
@@ -198,6 +202,10 @@ h1.pixel-text,
     grid-template-columns: repeat(3, 1fr);
 }
 
+.grid.cols-4 {
+    grid-template-columns: repeat(4, 1fr);
+}
+
 .grid.gap-sm {
     gap: 20px;
 }
@@ -276,7 +284,8 @@ h1.pixel-text,
     }
 
     .grid.cols-2,
-    .grid.cols-3 {
+    .grid.cols-3,
+    .grid.cols-4 {
         grid-template-columns: 1fr;
     }
 
