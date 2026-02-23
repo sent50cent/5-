@@ -45,4 +45,23 @@ document.addEventListener("DOMContentLoaded", () => {
             gsap.to(wrap.querySelector('img, video'), { scale: 1, duration: 0.4, ease: "power2.out" });
         });
     });
+
+    // --- VIDEO LOADER LOGIC ---
+    const allVideos = document.querySelectorAll('.video-loader-wrapper video');
+    allVideos.forEach(vid => {
+        const markLoaded = () => {
+            const wrapper = vid.closest('.video-loader-wrapper');
+            if (wrapper) wrapper.classList.add('is-loaded');
+        };
+
+        // If already loaded from cache
+        if (vid.readyState >= 3) {
+            markLoaded();
+        } else {
+            // Otherwise wait for the event
+            vid.addEventListener('canplay', markLoaded);
+            vid.addEventListener('playing', markLoaded);
+        }
+    });
+
 });

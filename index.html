@@ -13,32 +13,69 @@
 
 <body>
 
-    <!-- 1 БЛОК -->
+    <!-- ПИКСЕЛЬНЫЕ ОБЛАКА ПО БОКАМ -->
+    <div class="pixel-clouds"></div>
+
+    <!-- 1 БЛОК: Видео 6 на весь экран без текста -->
+    <section class="hero-video-section">
+        <div class="video-loader-wrapper">
+            <div class="pixel-heart-loader"></div>
+            <video src="images_optimized/v6.mp4" autoplay loop muted playsinline class="hero-video"></video>
+        </div>
+    </section>
+
+    <!-- 2 БЛОК: Текст визуальный стиль + Карусель видео -->
     <section class="section bg-white border-bottom pattern-bg-pink">
-        <div class="container split">
-            <div class="text-col">
+        <div class="container split text-left-mobile">
+            <div class="text-col align-center">
                 <p class="body-text">Визуальный стиль: ИИ Анимация в духе Мира Барби + розовая гламурная эстетика (яркие
                     контуры, блестки, сердечки, стилизованные интерфейсы игры). Всё выглядит как геймплей игры, но с
                     кинематографическими камерами и поп-глянцем.</p>
             </div>
-            <div class="visual-col">
-                <div class="image-wrap solid-border">
-                    <img src="images_optimized/1.jpg" alt="Блок 1">
-                </div>
-            </div>
-        </div>
-    </section>
+            <div class="visual-col carousel-container">
+                <div class="carousel-track solid-border">
+                    <!-- Дублируем набор видео для бесконечной карусели -->
+                    <div class="video-loader-wrapper">
+                        <div class="pixel-heart-loader"></div><video src="images_optimized/v1.mp4" autoplay loop muted
+                            playsinline></video>
+                    </div>
+                    <div class="video-loader-wrapper">
+                        <div class="pixel-heart-loader"></div><video src="images_optimized/v2.mp4" autoplay loop muted
+                            playsinline></video>
+                    </div>
+                    <div class="video-loader-wrapper">
+                        <div class="pixel-heart-loader"></div><video src="images_optimized/v3.mp4" autoplay loop muted
+                            playsinline></video>
+                    </div>
+                    <div class="video-loader-wrapper">
+                        <div class="pixel-heart-loader"></div><video src="images_optimized/v4.mp4" autoplay loop muted
+                            playsinline></video>
+                    </div>
+                    <div class="video-loader-wrapper">
+                        <div class="pixel-heart-loader"></div><video src="images_optimized/v5.mov" autoplay loop muted
+                            playsinline></video>
+                    </div>
 
-    <!-- 2 БЛОК -->
-    <section class="section bg-pink border-bottom pattern-bg-white">
-        <div class="container split reverse">
-            <div class="text-col">
-                <p class="body-text">Камера пролетает через яркий мир Симс: розовый особняк, бассейн с единорогами,
-                    голографические шопинг-моллы</p>
-            </div>
-            <div class="visual-col">
-                <div class="image-wrap solid-border video-wrap">
-                    <video src="images_optimized/video1.mp4" autoplay loop muted playsinline></video>
+                    <div class="video-loader-wrapper">
+                        <div class="pixel-heart-loader"></div><video src="images_optimized/v1.mp4" autoplay loop muted
+                            playsinline></video>
+                    </div>
+                    <div class="video-loader-wrapper">
+                        <div class="pixel-heart-loader"></div><video src="images_optimized/v2.mp4" autoplay loop muted
+                            playsinline></video>
+                    </div>
+                    <div class="video-loader-wrapper">
+                        <div class="pixel-heart-loader"></div><video src="images_optimized/v3.mp4" autoplay loop muted
+                            playsinline></video>
+                    </div>
+                    <div class="video-loader-wrapper">
+                        <div class="pixel-heart-loader"></div><video src="images_optimized/v4.mp4" autoplay loop muted
+                            playsinline></video>
+                    </div>
+                    <div class="video-loader-wrapper">
+                        <div class="pixel-heart-loader"></div><video src="images_optimized/v5.mov" autoplay loop muted
+                            playsinline></video>
+                    </div>
                 </div>
             </div>
         </div>
@@ -177,7 +214,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="script.js?v=6"></script>
+    <script src="script.js?v=12"></script>
 </body>
 
 </html>

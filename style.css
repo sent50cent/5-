@@ -306,3 +306,134 @@ h1.pixel-text,
         box-shadow: 6px 6px 0px var(--c-white);
     }
 }
+
+/* ==================================
+   NEW FEATURES: FULL VIDEO & CAROUSEL
+================================== */
+
+.hero-video-section {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background-color: var(--c-black);
+}
+
+.hero-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.carousel-container {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.carousel-track {
+    display: flex;
+    width: max-content;
+    animation: scrollCarousel 20s linear infinite;
+    /* Clean Solid style for the track itself */
+    background: var(--c-white);
+    padding: 10px;
+    gap: 10px;
+}
+
+.carousel-track .video-loader-wrapper {
+    width: 300px;
+    aspect-ratio: 16/9;
+    flex-shrink: 0;
+    overflow: hidden;
+    border: 3px solid var(--border-color);
+}
+
+.carousel-track video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+@keyframes scrollCarousel {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(calc(-50% - 5px));
+    }
+}
+
+@media (max-width: 900px) {
+    .carousel-track .video-loader-wrapper {
+        width: 200px;
+    }
+}
+
+/* ==================================
+   LOADERS & CLOUDS
+================================== */
+
+.video-loader-wrapper {
+    position: relative;
+    background: var(--c-light-pink);
+    width: 100%;
+    height: 100%;
+}
+
+.pixel-heart-loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 40px;
+    background-color: var(--c-pink);
+    /* Simple CSS Pixel Heart using polygon clip paths */
+    clip-path: polygon(50% 100%, 0 40%, 0 0, 40% 0, 50% 20%, 60% 0, 100% 0, 100% 40%);
+    animation: heartBeatPulse 1s ease-in-out infinite alternate;
+}
+
+.hero-video-section .pixel-heart-loader {
+    width: 80px;
+    height: 80px;
+}
+
+@keyframes heartBeatPulse {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) scale(1.2);
+    }
+}
+
+/* Hide the loader when JS detects video playing */
+.video-loader-wrapper.is-loaded .pixel-heart-loader {
+    display: none;
+}
+
+.video-loader-wrapper.is-loaded {
+    background: transparent;
+}
+
+/* SVG Pixel Clouds using multiple backgrounds */
+.pixel-clouds {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 10;
+    /* Drawing abstract horizontal stepped pixel cloud */
+    background-image:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 5'%3E%3Cpath fill='rgba(0,0,0,0.03)' d='M2,2 h2 v-1 h3 v1 h2 v2 h-1 v1 h-5 v-1 h-1 z'/%3E%3C/svg%3E"),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 5'%3E%3Cpath fill='rgba(255,105,180,0.08)' d='M2,2 h2 v-1 h3 v1 h2 v2 h-1 v1 h-5 v-1 h-1 z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-size: 150px, 200px;
+    background-position: left 2% top 15%, right 2% bottom 15%;
+}
