@@ -8,7 +8,6 @@
     /* Pale pink for backgrounds */
     --c-black: #111111;
     --c-white: #FFFFFF;
-    --c-green: #39FF14;
 
     --border-color: #111111;
 }
@@ -35,22 +34,18 @@ body {
     text-transform: uppercase;
 }
 
-h1.pixel-text {
+h1.pixel-text,
+.h1 {
     font-size: clamp(2rem, 5vw, 4rem);
     line-height: 1.2;
     margin-bottom: 2rem;
 }
 
 .sub-heading {
-    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-size: clamp(2rem, 4.5vw, 4rem);
     font-weight: 900;
     letter-spacing: -0.04em;
-    line-height: 1.05;
-    margin-bottom: 1.5rem;
-}
-
-h2.pixel-text {
-    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.1;
     margin-bottom: 1.5rem;
 }
 
@@ -61,13 +56,16 @@ h2.pixel-text {
     letter-spacing: -0.01em;
 }
 
+.body-text-lg {
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1.4;
+    letter-spacing: -0.02em;
+}
+
 /* Colors */
 .pink-accent {
     color: var(--c-pink);
-}
-
-.green-accent {
-    color: var(--c-green);
 }
 
 .bg-pink {
@@ -86,8 +84,25 @@ h2.pixel-text {
     color: var(--c-white);
 }
 
-.text-white .body-text {
-    color: rgba(255, 255, 255, 0.85);
+.text-white .body-text,
+.text-white .body-text-lg {
+    color: rgba(255, 255, 255, 0.95);
+}
+
+/* Patterns - Pixel Hearts */
+.pattern-bg-white {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 9 9'%3E%3Cpath fill='rgba(0,0,0,0.03)' d='M1,2 h2 v1 h-2 Z M6,2 h2 v1 h-2 Z M0,3 h4 v1 h-4 Z M5,3 h4 v1 h-4 Z M0,4 h9 v1 h-9 Z M1,5 h7 v1 h-7 Z M2,6 h5 v1 h-5 Z M3,7 h3 v1 h-3 Z M4,8 h1 v1 h-1 Z'/%3E%3C/svg%3E");
+    background-size: 30px 30px;
+}
+
+.pattern-bg-pink {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 9 9'%3E%3Cpath fill='rgba(255,255,255,0.4)' d='M1,2 h2 v1 h-2 Z M6,2 h2 v1 h-2 Z M0,3 h4 v1 h-4 Z M5,3 h4 v1 h-4 Z M0,4 h9 v1 h-9 Z M1,5 h7 v1 h-7 Z M2,6 h5 v1 h-5 Z M3,7 h3 v1 h-3 Z M4,8 h1 v1 h-1 Z'/%3E%3C/svg%3E");
+    background-size: 30px 30px;
+}
+
+.pattern-bg-black {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 9 9'%3E%3Cpath fill='rgba(255,255,255,0.05)' d='M1,2 h2 v1 h-2 Z M6,2 h2 v1 h-2 Z M0,3 h4 v1 h-4 Z M5,3 h4 v1 h-4 Z M0,4 h9 v1 h-9 Z M1,5 h7 v1 h-7 Z M2,6 h5 v1 h-5 Z M3,7 h3 v1 h-3 Z M4,8 h1 v1 h-1 Z'/%3E%3C/svg%3E");
+    background-size: 30px 30px;
 }
 
 /* Borders & brutalist lines */
@@ -99,28 +114,24 @@ h2.pixel-text {
     border-bottom: 3px solid var(--border-color);
 }
 
-.border-white {
-    border-color: var(--c-white);
-}
-
 .solid-border {
     border: 3px solid var(--border-color);
-    box-shadow: 10px 10px 0px var(--border-color);
+    box-shadow: 8px 8px 0px var(--border-color);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .solid-border:hover {
-    transform: translate(5px, 5px);
-    box-shadow: 5px 5px 0px var(--border-color);
+    transform: translate(4px, 4px);
+    box-shadow: 4px 4px 0px var(--border-color);
 }
 
 .solid-border.white-border {
     border-color: var(--c-white);
-    box-shadow: 10px 10px 0px var(--c-white);
+    box-shadow: 8px 8px 0px var(--c-white);
 }
 
 .solid-border.white-border:hover {
-    box-shadow: 5px 5px 0px var(--c-white);
+    box-shadow: 4px 4px 0px var(--c-white);
 }
 
 /* Layouting */
@@ -135,11 +146,11 @@ h2.pixel-text {
 }
 
 .section-header {
-    margin-bottom: 60px;
+    margin-bottom: 50px;
 }
 
 .max-w {
-    max-width: 700px;
+    max-width: 800px;
 }
 
 /* Flex & Splits */
@@ -199,7 +210,7 @@ h2.pixel-text {
 .image-wrap {
     width: 100%;
     overflow: hidden;
-    background: #f0f0f0;
+    background: var(--c-white);
     display: flex;
 }
 
@@ -209,7 +220,8 @@ h2.pixel-text {
     height: 100%;
     object-fit: cover;
     display: block;
-    aspect-ratio: 4/3;
+    aspect-ratio: 16/9;
+    /* Required 16:9 ratio */
     transition: transform 0.4s ease;
 }
 
@@ -218,14 +230,9 @@ h2.pixel-text {
     transform: scale(1.02);
 }
 
-.video-wrap video {
-    aspect-ratio: 16/9;
-    /* Fix video to widescreen */
-}
-
 /* Placeholders (Clean Pixel style) */
 .placeholder {
-    aspect-ratio: 4/3;
+    aspect-ratio: 16/9;
     display: flex;
     align-items: center;
     justify-content: center;
